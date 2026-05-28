@@ -33,7 +33,7 @@ import type { UserStore, OrdersList } from '../stores/OrdersStore'
 import type { FilterKey } from '../assets/elements/OrdersFilterBar.vue'
 import userStore from '../stores/UserStore'
 import OrderStore from '../stores/OrdersStore'
-import NavBar from "../assets/Navbar.vue"
+import NavBar from "../assets/layouts/Navbar.vue"
 
 const userStores = userStore();
 const orderStores = OrderStore();

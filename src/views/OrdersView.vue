@@ -33,7 +33,7 @@ import OrdersTable      from '../assets/elements/OrdersTable.vue'
 import OrderDetailModal from '../assets/elements/OrderDetailModal.vue'
 import type { OrdersList } from '../stores/OrdersStore'
 import OrderStore from '../stores/OrdersStore'
-import Navbar from '../assets/Navbar.vue'
+import Navbar from '../assets/layouts/Navbar.vue'
 import userStore from '../stores/UserStore'
 
 // ── State ──────────────────────────────────────────────────────────────────────

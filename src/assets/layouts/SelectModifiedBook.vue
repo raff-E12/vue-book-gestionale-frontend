@@ -144,7 +144,7 @@ import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
 import InputNumber from 'primevue/inputnumber'
 import Textarea from 'primevue/textarea'
-import type { Book } from '../stores/bookStore'
+import type { Book } from '../../stores/bookStore'
 import FileUpload from 'primevue/fileupload'
 
 // ─── Campi modificabili ───────────────────────────────────────────────────────

@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { computed, ref, toRaw, toRef, toRefs, watch, watchEffect } from 'vue';
-import UseBookStoreApi from '../stores/bookStore';
+import UseBookStoreApi from '../../stores/bookStore.ts';
 import { DynamicDialog, useDialog, useToast, Toast } from 'primevue';
-import ConfirmModal from '../components/ConfirmModal.vue';
+import ConfirmModal from '../../components/ConfirmModal.vue';
 import Button from 'primevue/button';
 import { useRoute, useRouter } from 'vue-router';
 import Badge from 'primevue/badge';
-import OrderStore from '../stores/OrdersStore';
+import OrderStore from '../../stores/OrdersStore.ts';
 import FileUpload from 'primevue/fileupload';
 import Avatar from 'primevue/avatar';
 import AvatarGroup from 'primevue/avatargroup';   //Optional for grouping
-import userStore from '../stores/UserStore';
+import userStore from '../../stores/UserStore.ts';
 import Popover from 'primevue/popover';
 
 const isOpen = ref(false);

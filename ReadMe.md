@@ -64,7 +64,6 @@ VITE_KEY_TOKEN="prova"
 |---|---|
 | `VITE_URL_BASE` | URL base del Gateway Spring Cloud (backend) |
 | `VITE_PORT` | Porta su cui gira il dev server Vite |
-| `VITE_KEY_TOKEN` | Chiave usata per la gestione del token di autenticazione |
 
 > ⚠️ Non committare mai il file `.env` con credenziali reali in produzione. Usa `.env.production` per i valori di produzione.
 
@@ -92,16 +91,23 @@ L'applicazione sarà disponibile su: [http://localhost:5174](http://localhost:51
 
 ```
 vue-book-gestionale-frontend/
-├── public/                  # Asset statici pubblici
+├── public/            # Asset statici pubblici
 ├── src/
-│   ├── assets/              # Immagini, font, stili globali
-│   ├── components/          # Componenti Vue riutilizzabili
-│   ├── views/               # Pagine dell'applicazione (collegate al router)
+│   ├── api/           # Tutte le chiamate con il backend
+│   ├── assets/
+|   |     |
+│   |     ├── elements/               # Componenti generali
+|   |     ├── helpers/                # Funzioni generali
+|   |     └── components/             # Componenti Importanti
+|   |
+|   ├── css/                 # Stili Generali di Prova 
 │   ├── router/              # Configurazione Vue Router
 │   ├── stores/              # Store Pinia (stato globale)
-│   ├── services/            # Chiamate HTTP con Axios verso il Gateway
-│   ├── types/               # Interfacce e tipi TypeScript
-│   └── main.ts              # Entry point dell'applicazione
+│   ├── views/               # Componenti di Pagina
+|   ├── App.vue              # Componenti di Entrata
+|   ├── main.ts              # Entry point dell'applicazione
+│   └── style.css            # Stile Globale (opzionale)
+|
 ├── .env                     # Variabili d'ambiente locali
 ├── index.html               # Template HTML principale
 ├── vite.config.ts           # Configurazione Vite
@@ -132,6 +138,13 @@ const apiClient = axios.create({
     'Content-Type': 'application/json'
   }
 })
+
+const libroService = {
+  getAll() {
+    return apiClient.get("/api/servizio");
+  },
+  ...
+};
 
 export default apiClient
 ```

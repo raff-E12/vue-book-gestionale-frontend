@@ -4,10 +4,10 @@ import UseBookStoreApi from '../stores/bookStore';
 import { Button, Toast, ConfirmPopup, useToast, useConfirm } from 'primevue';
 import { useRoute, useRouter } from 'vue-router';
 import { Book } from '../stores/bookStore';
-import SelectModifiedBook from '../assets/SelectModifiedBook.vue';
+import SelectModifiedBook from '../assets/layouts/SelectModifiedBook.vue';
 import BookCheckOut from './BookCheckOut.vue';
 import OrderStore from '../stores/OrdersStore';
-import SwitchCover from '../assets/SwitchCover.vue';
+import SwitchCover from '../assets/layouts/SwitchCover.vue';
 import userStore from '../stores/UserStore';
 
 const props = defineProps(["id", "book"]);

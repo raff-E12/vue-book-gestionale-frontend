@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Button, ConfirmPopup, useConfirm } from 'primevue'
-import { OrderTemplate } from '../stores/OrdersStore';
+import { OrderTemplate } from '../../stores/OrdersStore';
 
 const props = defineProps<{ item: OrderTemplate }>()
 

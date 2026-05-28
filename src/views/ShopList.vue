@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useCartStore } from '../stores/cartList'
-import ShopCartItem from '../assets/ShopCartItem.vue'
+import ShopCartItem from '../assets/layouts/ShopCartItem.vue'
 import { Button, Toast, useToast } from 'primevue'
 import { useRouter } from 'vue-router';
 import OrderStore from '../stores/OrdersStore';

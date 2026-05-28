@@ -3,12 +3,12 @@ import { computed, onMounted, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import UseBookStoreApi from '../stores/bookStore'
 import { Book } from '../stores/bookStore'
-import Navbar from '../assets/Navbar.vue'
+import Navbar from '../assets/layouts/Navbar.vue'
 import userStore from '../stores/UserStore'
 import OrderStore from '../stores/OrdersStore'
 import rateStore from '../stores/rateStore'
 import InputText from 'primevue/inputtext';
-import SearchBox from '../assets/SearchBox.vue'
+import SearchBox from '../assets/layouts/SearchBox.vue'
 
 const router = useRouter()
 const store = UseBookStoreApi()

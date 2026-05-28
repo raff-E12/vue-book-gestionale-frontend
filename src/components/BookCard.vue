@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRef, toRefs, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import SwitchCover from '../assets/SwitchCover.vue';
+import SwitchCover from '../assets/layouts/SwitchCover.vue';
 import NotFound from "../../public/img/Not_found_img.png"
 
   const props = defineProps(["booksList"]);

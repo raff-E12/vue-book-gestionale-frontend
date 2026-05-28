@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { toRefs, ref, computed, onMounted, watch } from 'vue';
-import UseBookStoreApi from '../stores/bookStore';
+import UseBookStoreApi from '../../stores/bookStore';
 
 const searchQuery = ref('');
 const searchMode = ref<'text' | 'category'>('text');

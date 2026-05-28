@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import Navbar from '../assets/Navbar.vue'
+import Navbar from '../assets/layouts/Navbar.vue'
 import TrashedBooksTable from '../components/TrashedBooksTable.vue'
 import UseBookStoreApi from '../stores/bookStore'
 import userStore from '../stores/UserStore'
