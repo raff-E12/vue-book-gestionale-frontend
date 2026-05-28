@@ -4,8 +4,9 @@ import Navbar from '../assets/Navbar.vue'
 import TrashedBooksTable from '../components/TrashedBooksTable.vue'
 import UseBookStoreApi from '../stores/bookStore'
 import userStore from '../stores/UserStore'
-import { useToast } from 'primevue/usetoast'
+import { useToast, useConfirm, Toast, ConfirmDialog  } from "primevue";
 
+const confirm = useConfirm();
 const store = UseBookStoreApi()
 const user = userStore()
 const toast = useToast()
@@ -45,6 +46,28 @@ const handleRestore = async (id: number) => {
   }
 }
 
+const UseConfirmDialog = (id: number) => {
+    confirm.require({
+        message: "Vuoi procedere con l'operazione Effettiva?",
+        icon: 'pi pi-exclamation-triangle',
+        header: "Sicuro di Procedere",
+        rejectProps: {
+            label: 'Annulla Operazione',
+            severity: 'danger',
+            outlined: true
+        },
+        acceptProps: {
+            label: 'Prosegui'
+        },
+        accept: () => {
+            handleRestore(id)
+        },
+        reject: () => {
+            toast.add({ severity: 'warn', summary: 'Operazione Annullata', detail: "L'Operazione non stata Eseguita", life: 3000 });
+        }
+    });
+};
+
 onMounted(() => {
   if (isAdmin.value) {
     loadTrashedBooks()
@@ -53,6 +76,8 @@ onMounted(() => {
 </script>
 
 <template>
+  <Toast />
+  <ConfirmDialog />
   <Navbar :loading="isLoading" @load="loadTrashedBooks" :load="true" />
 
   <div class="trashed-books-page">
@@ -77,7 +102,7 @@ onMounted(() => {
           :books="books"
           :loading="isLoading"
           :isAdmin="isAdmin"
-          @restore="handleRestore"
+          @restore="UseConfirmDialog"
         />
       </div>
     </div>

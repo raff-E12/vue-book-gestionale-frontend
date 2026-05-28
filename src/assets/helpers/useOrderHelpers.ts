@@ -3,6 +3,7 @@ const PALETTE = [
   '#dc2626', '#7c3aed', '#db2777', '#0284c7',
 ]
 
+// Restituzione del Numero Assoluto dal calcolo dal Unicode di ogni Stringa Applicata
 function hashStr(s: string): number {
   let h = 0
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0

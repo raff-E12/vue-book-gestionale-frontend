@@ -80,8 +80,22 @@ const handleOrder = ({ book, quantity, total, length }: { book: Book; quantity: 
 };
 
 const handleDeleteForever = () => {
-  const id = book.value.id;
-  store.DeleteBook(id);
+   confirmPopup.require({
+    message: 'Sei sicuro di voler cancellare questo libro?',
+    header: 'Conferma Cancellazione',
+    icon: 'pi pi-exclamation-triangle',
+    acceptLabel: 'Sì, cancella',
+    rejectLabel: 'No, annulla',
+    accept: () => {
+      const id = book.value.id;
+      store.DeleteBook(id);
+      if(userRole.value?.includes('Amministratore') || userRole.value?.includes('Gestore')) route.push('/books');
+      toast.add({ severity: 'success', summary: 'Libro Cancellato', detail: 'Il libro è stato cancellato con successo.', life: 3000 });
+    },
+    reject: () => {
+      toast.add({ severity: "error", summary: 'Cancellazione Annullata', detail: 'Il libro non è stato cancellato.', life: 3000 });
+    }
+  });
 }
 
 </script>
@@ -194,10 +208,6 @@ const handleDeleteForever = () => {
   grid-template-columns: 200px 1fr;
   gap: 48px;
   margin-bottom: 32px;
-}
-
-.btn-margin{
-
 }
 
 .book-cover-large {

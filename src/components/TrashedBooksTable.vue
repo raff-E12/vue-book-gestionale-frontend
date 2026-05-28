@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import Button from 'primevue/button'
@@ -49,7 +48,7 @@ const restoreBook = (id: number) => {
             label="Ripristina"
             icon="pi pi-undo"
             class="restore-button"
-            @click.stop="() => restoreBook(slotProps.data.id)"
+            @click.stop="restoreBook(slotProps.data.id)"
           />
         </template>
       </Column>
