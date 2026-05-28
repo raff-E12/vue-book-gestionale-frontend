@@ -57,7 +57,6 @@ Crea (o verifica) il file `.env` nella root del progetto:
 ```env
 VITE_URL_BASE="http://localhost:8089"
 VITE_PORT=5174
-VITE_KEY_TOKEN="prova"
 ```
 
 | Variabile | Descrizione |
