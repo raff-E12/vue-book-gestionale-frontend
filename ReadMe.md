@@ -150,17 +150,6 @@ I file ottimizzati verranno generati nella cartella `dist/`. Per visualizzarli i
 npm run preview
 ```
 
----
-
-## 🤝 Contribuire
-
-1. Fai un fork del repository
-2. Crea un branch: `git checkout -b feature/nome-feature`
-3. Committa le modifiche: `git commit -m 'feat: descrizione'`
-4. Pusha il branch: `git push origin feature/nome-feature`
-5. Apri una Pull Request
-
----
 
 ## 📄 Premessa
 
