@@ -1,0 +1,627 @@
+/* =============================================
+   APPLE 2015 DESIGN SYSTEM — La Mia Libreria
+   Ispirato a iBooks Store e Pages 2015
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  background-color: #f2f2f7 !important;
+  color: #1d1d1f !important;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Reset headings inside apple components */
+.apple-navbar-title,
+.search-section-title,
+.section-title,
+.detail-title {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.25;
+}
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+.apple-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+  border-bottom: 1px solid #d2d2d7;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.06);
+  padding: 0 24px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.apple-navbar-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.2px;
+  text-align: center;
+}
+
+/* =============================================
+   PAGE CONTAINER
+   ============================================= */
+.apple-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+/* =============================================
+   SEARCH SECTION
+   ============================================= */
+.search-section {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+  padding: 28px 32px;
+  margin-bottom: 32px;
+}
+
+.search-section-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 20px;
+  letter-spacing: -0.3px;
+}
+
+/* Segment Control */
+.segment-control {
+  display: inline-flex;
+  background: linear-gradient(180deg, #e8e8ed 0%, #d8d8de 100%);
+  border-radius: 9px;
+  padding: 3px;
+  gap: 0;
+  margin-bottom: 20px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.12);
+}
+
+.segment-btn {
+  padding: 7px 20px;
+  border: none;
+  border-radius: 7px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #3d3d4e;
+  cursor: pointer;
+  background: transparent;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+.segment-btn.active {
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
+  color: #1d1d1f;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.18), 0 1px 1px rgba(0,0,0,0.08);
+}
+
+/* Search Input Row */
+.search-input-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.apple-input {
+  flex: 1;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #c7c7cc;
+  border-radius: 10px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #1d1d1f;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.apple-input:focus {
+  border-color: #0070C9;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.06), 0 0 0 3px rgba(0,112,201,0.18);
+}
+
+.apple-input::placeholder {
+  color: #aeaeb2;
+}
+
+.apple-input[type="number"]::-webkit-inner-spin-button,
+.apple-input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+/* Apple Blue Button */
+.apple-btn-primary {
+  height: 40px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  background: linear-gradient(180deg, #1a8fe3 0%, #0070C9 50%, #005fa8 100%);
+  box-shadow: 0 1px 3px rgba(0,112,201,0.4), 0 2px 8px rgba(0,112,201,0.25);
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.apple-btn-primary:hover {
+  background: linear-gradient(180deg, #2298f0 0%, #0078d4 50%, #0068b8 100%);
+  box-shadow: 0 2px 6px rgba(0,112,201,0.5), 0 4px 12px rgba(0,112,201,0.3);
+}
+
+.apple-btn-primary:active {
+  background: linear-gradient(180deg, #005fa8 0%, #0070C9 100%);
+  transform: scale(0.98);
+  box-shadow: 0 1px 2px rgba(0,112,201,0.3);
+}
+
+/* Search Results Info */
+.search-results-info {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #6e6e73;
+}
+
+/* =============================================
+   BOOKS GRID
+   ============================================= */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1100px) {
+  .books-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 780px) {
+  .books-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .books-grid { grid-template-columns: 1fr; }
+}
+
+/* =============================================
+   BOOK CARD
+   ============================================= */
+.book-card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(0,0,0,0.06);
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.book-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.14), 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.book-card:active {
+  transform: translateY(-2px) scale(1.005);
+  box-shadow: 0 5px 16px rgba(0,0,0,0.12);
+}
+
+/* Book Cover */
+.book-cover {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-cover-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+}
+
+.book-cover-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  background: rgba(0,0,0,0.15);
+}
+
+.book-cover-initials {
+  font-size: 40px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  letter-spacing: -1px;
+  z-index: 1;
+  line-height: 1;
+  text-align: center;
+}
+
+/* Book Info */
+.book-info {
+  padding: 14px 16px 16px;
+}
+
+.book-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+  line-height: 1.35;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-author {
+  font-size: 12px;
+  font-weight: 400;
+  color: #6e6e73;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Availability Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+}
+
+.badge-available {
+  background: linear-gradient(180deg, #34c85a 0%, #28a745 100%);
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(40,167,69,0.3);
+}
+
+.badge-unavailable {
+  background: linear-gradient(180deg, #ff453a 0%, #d93025 100%);
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(217,48,37,0.3);
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.8);
+  flex-shrink: 0;
+}
+
+/* Empty State */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 64px 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.empty-state-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.empty-state-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+}
+
+.empty-state-sub {
+  font-size: 15px;
+  color: #6e6e73;
+}
+
+/* =============================================
+   BOOK DETAIL PAGE
+   ============================================= */
+.detail-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 24px 64px;
+}
+
+.detail-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #0070C9;
+  cursor: pointer;
+  padding: 6px 0;
+  margin-bottom: 24px;
+  transition: opacity 0.15s ease;
+}
+
+.detail-back-btn:hover {
+  opacity: 0.75;
+}
+
+.detail-back-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Detail Layout */
+.detail-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.detail-header {
+  background: linear-gradient(180deg, #f5f5f7 0%, #ebebf0 100%);
+  padding: 32px;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  border-bottom: 1px solid #d2d2d7;
+}
+
+/* Large Cover */
+.detail-cover {
+  width: 200px;
+  height: 280px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 4px 6px 20px rgba(0,0,0,0.25), -2px 0 8px rgba(0,0,0,0.15);
+}
+
+.detail-cover-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, transparent 55%);
+}
+
+.detail-cover-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: rgba(0,0,0,0.18);
+}
+
+.detail-cover-initials {
+  font-size: 56px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  letter-spacing: -2px;
+  z-index: 1;
+  text-align: center;
+  line-height: 1;
+}
+
+/* Detail Meta (right column) */
+.detail-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.detail-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.detail-author {
+  font-size: 18px;
+  font-weight: 400;
+  color: #6e6e73;
+  margin-bottom: 16px;
+}
+
+/* Fields Grid */
+.detail-fields {
+  padding: 28px 32px 32px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+@media (max-width: 600px) {
+  .detail-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px;
+  }
+  .detail-fields {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .detail-cover {
+    width: 160px;
+    height: 225px;
+  }
+}
+
+.detail-field {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f2f2f7;
+  border-right: 1px solid #f2f2f7;
+}
+
+.detail-field:nth-child(even) {
+  border-right: none;
+}
+
+.detail-field:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+@media (max-width: 600px) {
+  .detail-field {
+    border-right: none;
+  }
+  .detail-field:last-child {
+    border-bottom: none;
+  }
+  .detail-field:nth-last-child(-n+2) {
+    border-bottom: 1px solid #f2f2f7;
+  }
+  .detail-field:last-child {
+    border-bottom: none;
+  }
+}
+
+.detail-field-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #aeaeb2;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+}
+
+.detail-field-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1d1d1f;
+  line-height: 1.4;
+}
+
+.detail-field-value.note-value {
+  font-size: 14px;
+  font-weight: 400;
+  color: #3d3d4e;
+  line-height: 1.5;
+}
+
+/* Note field spans full width */
+.detail-field.full-width {
+  grid-column: 1 / -1;
+  border-right: none;
+}
+
+/* Bottom CTA */
+.detail-footer {
+  padding: 24px 32px;
+  background: linear-gradient(180deg, #fafafa 0%, #f5f5f7 100%);
+  border-top: 1px solid #e5e5ea;
+  text-align: center;
+}
+
+.apple-btn-large {
+  height: 46px;
+  padding: 0 40px;
+  border: none;
+  border-radius: 23px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  background: linear-gradient(180deg, #1a8fe3 0%, #0070C9 50%, #005fa8 100%);
+  box-shadow: 0 2px 8px rgba(0,112,201,0.4), 0 4px 16px rgba(0,112,201,0.25);
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+.apple-btn-large:hover {
+  background: linear-gradient(180deg, #2298f0 0%, #0078d4 50%, #0068b8 100%);
+  box-shadow: 0 4px 12px rgba(0,112,201,0.5), 0 6px 20px rgba(0,112,201,0.3);
+}
+
+.apple-btn-large:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(0,112,201,0.3);
+}
+
+/* Not Found */
+.not-found {
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.not-found-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.not-found-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 10px;
+}
+
+.not-found-sub {
+  font-size: 16px;
+  color: #6e6e73;
+  margin-bottom: 28px;
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: -0.3px;
+}
+
+.section-count {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6e6e73;
+}
