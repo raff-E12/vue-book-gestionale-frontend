@@ -95,17 +95,18 @@ vue-book-gestionale-frontend/
 │   ├── api/           # Tutte le chiamate con il backend
 │   ├── assets/
 |   |     |
-│   |     ├── elements/               # Componenti generali
-|   |     ├── helpers/                # Funzioni generali
-|   |     └── components/             # Componenti Importanti
+│   |     ├── elements/           # Componenti generali
+|   |     ├── helpers/            # Funzioni generali
+|   |     ├── components/         # Componenti Importanti
+|   |     └── layout/             # Componenti di Pagina
 |   |
 |   ├── css/                 # Stili Generali di Prova 
 │   ├── router/              # Configurazione Vue Router
 │   ├── stores/              # Store Pinia (stato globale)
-│   ├── views/               # Componenti di Pagina
+│   ├── views/               # Pagine
 |   ├── App.vue              # Componenti di Entrata
-|   ├── main.ts              # Entry point dell'applicazione
-│   └── style.css            # Stile Globale (opzionale)
+|   ├── main.ts          # Entry point dell'applicazione
+│   └── style.css         # Stile Globale (opzionale)
 |
 ├── .env                     # Variabili d'ambiente locali
 ├── index.html               # Template HTML principale
