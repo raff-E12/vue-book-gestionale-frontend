@@ -29,7 +29,7 @@ const fullname = ref('');
 const userStores = userStore();
 const loadingRole  = ref(false);
 const successRole  = ref(false);
-
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 const route = useRouter()
 
 async function handleRegister() {
@@ -44,12 +44,10 @@ async function handleRegister() {
   }
 
   loading.value = true
-
-  setTimeout(() => { 
-    loading.value = false
-    success.value = true
-  }, 1500);
-
+  await delay(1500)
+  loading.value = false
+  success.value = true
+  await delay(200)
   setTimeout(() => goTo('role'), 1700)
 }
 
@@ -67,30 +65,30 @@ function selectRole(id: string) {
 }
 
 
-function OperationForm() {
-
+async function OperationForm() {
+ try {
     loadingRole.value = true;
 
     const forms = {
       fullname: fullname.value,
       email: email.value,
       password: password.value,
-      // ensure role is always a string to satisfy ResponseRegister type
       role: selectedRole.value || '',
       verified: false
     }
 
-    // call register action (no unused variable)
-    userStores.getRegister(forms);
+    await userStores.getRegister(forms);
     const feedback = userStores.feedback.created;
 
     if(feedback){
       setTimeout(() => {
         successRole.value = true;
         loadingRole.value = false;
+      }, 200);
+      setTimeout(() => {
         goTo('done')
         userStores.ResetFeedBackErrors()
-      }, 600);
+      }, 300);
     } else {
       const ops = userStores.feedback.operations;
       const error = userStores.feedback.errors;
@@ -98,7 +96,7 @@ function OperationForm() {
       if(ops) roleError.value = "Utente gia esistente, Accedi Manualemente!!";
       if(error) roleError.value = "Errore di Registrazione, Riprova!!";
 
-      setInterval(() => {
+      setTimeout(() => {
         userStores.ResetFeedBackErrors()
         successRole.value = false;
         loadingRole.value = false;
@@ -106,11 +104,12 @@ function OperationForm() {
         ResetStep();
        }, 1300);
     }
-
+ } catch (err) {
+    console.log(err)
+ }
 }
 
 const ResetStep = () => {
-    setTimeout(() => {
       step.value = 'register';
       loading.value = false;
       success.value = false;
@@ -120,10 +119,8 @@ const ResetStep = () => {
       password.value = "";
       fullname.value = "";
       error.value = "";
-      error.value = "";
-      selectedRole.value = "";
+      selectedRole.value = null;
       roleError.value = "";
-    }, 1300);
 }
 
 function confirmRole() {
@@ -136,12 +133,13 @@ function confirmRole() {
 
 const skip = () => {
     setTimeout(() => {
-      goTo('done')
-      setTimeout(() => route.push('/'), 1200)
-    }, 1000);
+      if(selectedRole.value === "USER") route.push('/');
+      if(selectedRole.value === "ADMIN" || selectedRole.value === "EDITOR") route.push('/books');
+    }, 400);
 }
 
 watchEffect(() => {
+  console.log(step.value)
   if(step.value === "done") skip()
 });
 
@@ -268,7 +266,7 @@ const stepIndex = computed(() => ({ register: 0, role: 1, done: 2 }[step.value])
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </div>
-          <h1 class="title" style="margin-top:1.5rem;">Bentornato!</h1>
+          <h1 class="title" style="margin-top:1.5rem;">Benvenuto!</h1>
           <p class="subtitle" v-if="!loading">Stai per essere reindirizzato…</p>
           <div class="loading-bar" v-if="!loading"><div class="loading-fill" /></div>
         </div>

@@ -1,12 +1,18 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import AcessComponents from '../assets/elements/AcessComponents.vue'
 import RegisterComponents from '../assets/elements/RegisterComponents.vue'
+import userStore from '../stores/UserStore.ts'
 
 const router = useRouter()
 const isShow = ref(false);
 const isAnimated = ref(false);
+const user = userStore();
+
+const register = computed(() => user.feedback.created);
+const login = computed(() => user.feedback.access);
+const role = computed(() => user.data.role);
 
 const SetShow = (val: string) => {
   if (val === 'Login') {
@@ -22,6 +28,14 @@ const SetShow = (val: string) => {
   }
 };
 
+watchEffect(() => {
+  if(login.value || register.value) window.alert("Sei Gia Loggato!!");
+  setTimeout(() => {
+    if(login.value || register.value) return;
+    if(role.value.includes("USER")) router.push("/")
+    if(role.value.includes("EDITOR") || role.value.includes("ADMIN")) router.push("/books")
+  }, 1700);
+})
 </script>
 
 <template>

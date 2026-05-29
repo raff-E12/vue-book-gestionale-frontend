@@ -1,11 +1,27 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits, computed } from 'vue'
 import Button from 'primevue/button'
+import { useRoute, useRouter } from 'vue-router'
+import userStore from '../stores/UserStore'
 
 const props = defineProps({
   loading: { type: Boolean, default: false }
 })
+
 const emit = defineEmits(['confirm'])
+const router = useRouter();
+const users = userStore();
+const userRole = computed(() => {
+  if(users.data.role === "USER") return "Utente";
+  if(users.data.role === "EDITOR") return "Gestore";
+  if(users.data.role === "ADMIN") return "Amministratore";
+});
+
+function HandleHomepageReturn() {
+    if(userRole.value?.includes('Utente')) router.push('/');
+    if(userRole.value?.includes('Amministratore') || userRole.value?.includes('Gestore')) router.push('/books');
+}
+
 </script>
 
 <template>
@@ -29,6 +45,13 @@ const emit = defineEmits(['confirm'])
         :loading="props.loading"
         class="logout-card__button"
         @click="emit('confirm')"
+      />
+      <Button
+        label="Ritorna alla Homepage"
+        severity="success"
+        icon="pi pi-home"
+        class="logout-card__button"
+        @click="HandleHomepageReturn"
       />
     </div>
   </div>
