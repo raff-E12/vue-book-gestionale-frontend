@@ -1,4 +1,4 @@
-# 📚 Vue Book Gestionale — Frontend
+# 📚 Vue Book Gestionale — Frontend (Prototipo)
 
 Interfaccia utente per il sistema di e-commerce di libri basata su **Vue 3** con TypeScript. Comunica con il backend tramite l'**API Gateway** su Spring Cloud.
 
