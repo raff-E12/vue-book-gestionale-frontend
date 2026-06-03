@@ -13,7 +13,7 @@ const toast = useToast()
 const isLoading = ref(false)
 
 const isAdmin = computed(() => {
-  return user.data.role?.toString().toUpperCase() === 'ADMIN'
+  return user.data.role?.toString().toUpperCase() === 'ADMIN' || user.data.role?.toString().toUpperCase() === 'EDITOR';
 })
 
 const books = computed(() => store.trashed);
