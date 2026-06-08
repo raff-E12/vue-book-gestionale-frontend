@@ -104,16 +104,29 @@ const HandleClearForms = () => {
         trashDate: null,
         trashed: false
     }
-  }, 1500); 
+    isPrevColor.value = "";
+  }, 1500);
 }
 
 const HandleInputCheckForm = () => {
     const id = Number(store.books[store.length - 1].id) ?? 0;
-    const hasEmptyFields = Object.values(isFormsData.value).some(value => value === "" || value === null || value === undefined || value === 0);
+    const hasEmptyFields = Object.keys(isFormsData.value).filter(key => key !== "trashDate" && key !== "coverImg" && key !== "posizioneScaffale").some(key => {
+      const value = isFormsData.value[key as keyof typeof isFormsData.value];
+      return value === "" || value === null || value === undefined;
+    });
+
+    const lostkeys: string[] = [];
+    Object.keys(isFormsData.value).forEach(key => {
+      const value = isFormsData.value[key as keyof typeof isFormsData.value];
+      if ((value === "" || value === null || value === undefined) && key !== "trashDate" && key !== "coverImg" && key !== "posizioneScaffale") {
+        lostkeys.push(key);
+      }
+    });
+
     const formRaw = toRaw(isFormsData.value);
     const formData = new FormData();
       for (const [key, value] of Object.entries(formRaw)) {
-        if (value !== null && value !== undefined) {
+        if (key === "TrashDate" && (value !== null && value !== undefined)) {
           formData.append(key, String(value));
         }
       }
@@ -130,13 +143,13 @@ const HandleInputCheckForm = () => {
           },
           onClose(res) {
             if (hasEmptyFields) {
-              confirm.add({ severity: "warn", summary: "Avviso", detail: "I Campi devono essere Compilati", life: 1500 });
+              confirm.add({ severity: "warn", summary: "Avviso", detail: `I Campi Mancanti sono: ${lostkeys.join(",")}`, life: 1500 });
               HandleClearForms();
             } else {
                 if (res?.data === true) {
                   store.AddBook(formRaw);
                   if (store.operations) {
-                    confirm.add({ severity: "error", summary: "Errore", detail: "Il File non Mandato, Riprova più tardi!!", life: 1500 });
+                    confirm.add({ severity: "error", summary: "Errore", detail: "Il File non Mandato, Riprova più tardi!!", life: 1700 });
                     HandleClearForms();
                     } else {
                     toast.add({
@@ -236,15 +249,15 @@ const RefreshOrdersList = () => {
           <input type="text" id="autore" placeholder="Nome e cognome" v-model="isFormsData.autore" />
         </div>
         <div class="field">
-          <label>editore</label>
+          <label>editore <span class="required-star">*</span></label>
           <input type="text" id="editore" placeholder="Es. Bompiani" v-model="isFormsData.editore" />
         </div>
         <div class="field">
-          <label>Anno di pubblicazione</label>
+          <label>Anno di pubblicazione <span class="required-star">*</span></label>
           <input type="number" id="annoPubblicazione" placeholder="Es. 1980" min="1000" max="2099" v-model="isFormsData.annoPubblicazione" />
         </div>
         <div class="field">
-          <label>Categoria</label>
+          <label>Categoria <span class="required-star">*</span></label>
           <select id="categoria" v-model="isFormsData.categoria">
             <option value="">— Seleziona —</option>
             <option>Narrativa</option>
@@ -263,7 +276,7 @@ const RefreshOrdersList = () => {
       <p class="section-label">Dati catalogo</p>
       <div class="form-grid">
         <div class="field">
-          <label>ISBN</label>
+          <label>ISBN <span class="required-star">*</span></label>
           <input type="text" id="isbn" placeholder="978-3-16-148410-0" maxlength="17" v-model="isFormsData.isbn"/>
         </div>
         <div class="field">
@@ -271,18 +284,18 @@ const RefreshOrdersList = () => {
           <input type="text" id="posizioneScaffale" placeholder="Es. A3-12" v-model="isFormsData.posizioneScaffale"/>
         </div>
         <div class="field">
-          <label>Numero copie</label>
+          <label>Numero copie  <span class="required-star">*</span></label>
           <input type="number" id="numCopie" placeholder="0" min="0" v-model="isFormsData.numCopie"/>
         </div>
         <div class="field">
-          <label>Disponibilità</label>
+          <label>Disponibilità  <span class="required-star">*</span></label>
           <input type="number" id="numDisp" placeholder="0" min="0" v-model="isFormsData.disponibile"/>
         </div>
       </div>
 
       <p class="section-label">Copertina</p>
       <div class="field">
-        <label>Colore copertina</label>
+        <label>Colore copertina <span class="required-star">*</span></label>
         <div class="color-row">
           <div :class='`color-swatch ${isPrevColor === "#534AB7" ? "selected" : ""}`' style="background:#534AB7;" @click="(event) => selectColor('#534AB7')"></div>
           <div :class='`color-swatch ${isPrevColor === "#D85A30" ? "selected" : ""}`' style="background:#D85A30;" @click="(event) => selectColor('#D85A30')"></div>
@@ -297,18 +310,18 @@ const RefreshOrdersList = () => {
 
       <p class="section-label">Note</p>
       <div class="field">
-        <label>Note aggiuntive</label>
+        <label>Note aggiuntive <span class="required-star">*</span></label>
         <textarea id="note" placeholder="Condizioni del libro, annotazioni particolari…" v-model="isFormsData.note"></textarea>
       </div>
 
       <p class="section-label">Extra</p>
       <div class="form-grid">
-        <label>Prezzo</label>
+        <label>Prezzo <span class="required-star">*</span></label>
         <div class="field span2">
           <input type="number" id="int-prezzo" step="0.01" placeholder="0" min="0" max="999.99" v-model="isFormsData.prezzo"/>
         </div>
         <div class="field field-margin">
-          <label>Copertina Immagine</label>
+          <label>Copertina Immagine <span class="required-star">*</span></label>
             <FileUpload 
               mode="basic"
               choose-label="Carica" 

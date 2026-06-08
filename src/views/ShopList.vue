@@ -54,15 +54,7 @@ watch(
   (errors) => {
     if (errors) {
       toast.add({ severity: 'error', summary: 'Ordine non Creato', detail: 'Ordine non è stato creato!', life: 3500 });
-    }
-  }
-);
-
-watch(
-  () => store.created.timeout,
-  (errors) => {
-    if (errors) {
-      toast.add({ severity: 'warn', summary: 'Attenzione!!', detail: 'Non Creare Troppe Richieste in Arrivo', life: 3500 });
+      setTimeout(() => store.created.error = false, 1500);
     }
   }
 );

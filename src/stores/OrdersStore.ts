@@ -97,7 +97,7 @@ const OrderStore = defineStore("orders", {
 
     state: () => ({
         orders: [] as OrderTemplate[],
-        created: { id: 0, status: false, checks: false, error: false, timeout: false },
+        created: { id: 0, status: false, checks: false, error: false },
         checks: {
             shop: [] as BookOrderTemplate[],
             total: 0
@@ -169,7 +169,6 @@ const OrderStore = defineStore("orders", {
             this.created.checks = false;
             this.created.status = false;
             this.created.error = false;
-            this.created.timeout = false;
         },
 
         DecourtQuantity(id: number, sub: number){
@@ -238,13 +237,14 @@ const OrderStore = defineStore("orders", {
                 const Conversion: BookOrder[] = ResponseConversion.shop.map((element) => {
                     return { libro_id: element.BookId, libro_prezzo: element.prezzo, quantita: element.quantita, prezzo_subtotale: element.subtotale }
                 });
+
                 const ResponseFormat = { shop: Conversion, total: this.total, idUtente: id };
                 const fetch = await OrderService.createOrder(ResponseFormat);
+                
                 if(fetch.status === 200) {
                     this.created.status = true;
                     this.created.id = fetch.data.IdOrder;
                     this.created.error = false;
-                    this.created.timeout = false;
                 }
 
             } catch (error) {
@@ -252,18 +252,11 @@ const OrderStore = defineStore("orders", {
                     const statusErrors = error.response?.status;
                     this.created.status = false;
                     this.created.id = 0;
-                    if (statusErrors === 500) {
-                        this.created.timeout = true;
-                        this.created.error = false;
-                    } else {
-                        this.created.error = true;
-                        this.created.timeout = false;
-                    }
+                    if (statusErrors === 500) this.created.error = true; 
                     console.error(error.message);
                 } else if (error instanceof Error) {
                     this.created.status = false;
                     this.created.error = true;
-                    this.created.timeout = false;
                     this.created.id = 0;
                     console.error(error.message);
                 }

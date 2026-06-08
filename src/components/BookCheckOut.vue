@@ -184,16 +184,15 @@ function onDialogClose(val: boolean) {
 
 function onOrder() {
   const id = props.book?.id;
-  const findOrder = Orders.orders.map(element => element.BookId ).includes(id);
+  const findOrder = Orders.orders.map(element => element.BookId).includes(id);
   if (!findOrder) {
-    if (!props.book) return
-
-    // Salva i dati prima di chiudere il dialog principale
-    confirmedQty.value   = quantity.value
-    confirmedTotal.value = (Number(props.book.prezzo) * quantity.value).toFixed(2)
+    if (!props.book) return;
+    
+    confirmedQty.value   = quantity.value;
+    confirmedTotal.value = (Number(props.book.prezzo) * quantity.value).toFixed(2);
 
     try {
-      emit('order', { book: props.book, quantity: quantity.value, total: confirmedTotal.value, length: props.book.numCopie })
+      emit('order', { book: props.book, quantity: quantity.value, total: confirmedTotal.value, length: props.book.disponibile })
       orderSuccess.value = true
     } catch {
       orderSuccess.value = false

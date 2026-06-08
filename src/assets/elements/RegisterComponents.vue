@@ -54,7 +54,6 @@ async function handleRegister() {
 const roles = [
   { id: 'USER',   label: 'Utente',    icon: 'pi-user', desc: 'Esplora i diversi prodotti in vetrina' },
   { id: 'EDITOR',    label: 'Gestore Generale',  icon: 'pi-user-edit',  desc: 'Gestione dei diversi prodotti' },
-  { id: 'ADMIN',    label: 'Amministratore Generale',  icon: 'pi-wrench', desc: 'Amministrazione del Portale' },
 ]
 const selectedRole = ref<string | null>(null)
 const roleError    = ref('')

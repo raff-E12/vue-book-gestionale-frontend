@@ -165,7 +165,6 @@ const fieldOptions: FieldOption[] = [
   { key: 'categoria',         label: 'Categoria',          icon: 'pi pi-list',         type: 'text'     },
   { key: 'numCopie',          label: 'Numero Copie',       icon: 'pi pi-copy',         type: 'number',  min: 0 },
   { key: 'disponibile',       label: 'Disponibili',        icon: 'pi pi-check-circle', type: 'number',  min: 0 },
-  { key: 'posizioneScaffale', label: 'Posizione Scaffale', icon: 'pi pi-map-marker',   type: 'text'     },
   { key: 'coverColor',        label: 'Colore Copertina',   icon: 'pi pi-palette',      type: 'color'    },
   { key: 'note',              label: 'Note',               icon: 'pi pi-file-edit',    type: 'textarea' },
   { key: 'coverImg',          label: 'Copertina Immagine', icon: 'pi pi-image',    type: 'file' },
